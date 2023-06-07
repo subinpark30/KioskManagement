@@ -1,10 +1,11 @@
-import java.util.List;
 import java.util.Scanner;
+import java.util.List;
 
 public class ShakeShackBurgerApplication {
-    private static MenuContext menuContext;
-
+    static MenuContext menuContext;
+    static KioskManagement kioskManagement;
     public static void main(String[] args) {
+        kioskManagement = new KioskManagement();
         menuContext = new MenuContext();
         displayMainMenu();
     }
@@ -24,7 +25,7 @@ public class ShakeShackBurgerApplication {
         handleMainMenuInput();
     }
 
-    private static int printMenu(List<Menu> menus, int num) {
+    static int printMenu(List<Menu> menus, int num) {
         for (int i=0; i<menus.size(); i++) {
             System.out.println(num++ + ". " + menus.get(i).name + "   | " + menus.get(i).description);
         }
@@ -54,11 +55,13 @@ public class ShakeShackBurgerApplication {
                 handleCancelMenuInput();
                 break;
             case 0:
-                KioskManagement.displayKioskManagement();
+                kioskManagement.displayMainMenu();
+                displayMainMenu();
                 break;
             default:
                 System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
                 handleMainMenuInput();
+
                 break;
         }
     }
@@ -86,7 +89,7 @@ public class ShakeShackBurgerApplication {
         }
     }
 
-    private static void printMenuItems(List<Item> items) {
+    static void printMenuItems(List<Item> items) {
         for (int i=0; i<items.size(); i++) {
             int num = i + 1;
             System.out.println(num + ". " + items.get(i).name + "   | " + items.get(i).price + " | " + items.get(i).description);

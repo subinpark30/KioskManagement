@@ -63,7 +63,10 @@ class MenuContext {
         menuItems.put("Drinks", drinksMenu);
         menuItems.put("Beer", beerMenu);
     }
-
+    public void addMenus(String name,double price,String description,String key){
+        List<Item> newMenus = getMenuItems(key);
+        newMenus.add(new Item(name,price,description));
+    }
     public List<Menu> getMenus(String key) {
         return menus.get(key);
     }

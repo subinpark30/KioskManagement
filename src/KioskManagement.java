@@ -1,29 +1,168 @@
 
+import java.util.List;
 import java.util.Scanner;
 
-public class KioskManagement {
+public class KioskManagement extends ShakeShackBurgerApplication {
+    String name;
+    double price;
+    String description;
 
-    static void displayKioskManagement() {
-        System.out.println("[ 키오스크 관리 프로그램 ]");
-        System.out.println("1. 대기주문 목록        2. 완료주문 목록        3. 상품 생성        4. 상품 삭제");
+    KioskManagement(){}
 
-        handleKioskManagementInput();
+    KioskManagement(String name, double price, String description){
+        this.name=name;
+        this.price=price;
+        this.description=description;
     }
-
-    private static void handleKioskManagementInput() {
-        Scanner scanner = new Scanner(System.in);
+    void displayMainMenu(){
+        System.out.println("1.대기 주문 목록");
+        System.out.println("2.완료 주문 목록");
+        System.out.println("3.상품 생성");
+        System.out.println("4.상품 삭제");
+        System.out.println("5.종료하기");
+        handleMainMenuInput();
+    }
+    void handleMainMenuInput(){
+        Scanner scanner =new Scanner(System.in);
         int input = scanner.nextInt();
-        if (input == 1) {
-            // 대기주문 목록 메서드
-        } else if (input == 2) {
-            // 완료주문 목록 메서드
-        } else if (input == 3) {
-            // 상품 생성 메서드
-        } else if (input == 4) {
-            // 상품 삭제 메서드
-        } else {
-            System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-            handleKioskManagementInput();
+        switch (input){
+            case 1:
+                displayOrderCart();
+                break;
+            case 2:
+                finishOrderCart();
+                break;
+            case 3:
+                addMenu();
+                break;
+            case 4:
+                deleteMenu();
+                break;
+            case 5:
+                break;
         }
     }
+
+    public void displayOrderCart(){
+        //pintOrderCart
+        Scanner scanner = new Scanner(System.in);
+        int input = scanner.nextInt();
+        if(input == 1){
+            //addToFinishOrderCart
+            System.out.println("주문이 완료되었습니다.");
+        } else {
+            System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+            displayMainMenu();
+        }
+    }
+    void finishOrderCart(){
+        //printFinishOrderCart
+    }
+
+    void addMenu(){
+        System.out.println("새로운 상품 추가할 메뉴를 선택하세요.");
+        List<Menu> mainMenus = menuContext.getMenus("Main");
+        printMenu(mainMenus, 1);
+        handleAddMenu();
+    }
+    void handleAddMenu(){
+        // 해쉬맵 키값만 받아서,
+        //for if 로 버튼1일때 key[1]받아서
+        //넘겨주면 더 깔꼼해질듯
+        Scanner scanner = new Scanner(System.in);
+        int input = scanner.nextInt();
+        switch (input){
+            case 1:
+                addItem("Burgers");
+                break;
+            case 2:
+                addItem("Frozen Custard");
+                break;
+            case 3:
+                addItem("Drinks");
+                break;
+            case 4:
+                addItem("Beer");
+                break;
+        }
+    }
+    void addItem(String key){
+        KioskManagement Item = insertItem();
+        menuContext.addMenus(Item.name,Item.price,Item.description,key);
+        System.out.println("상품이 추가되었습니다.");
+        displayMainMenu();
+    }
+
+    KioskManagement insertItem(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("추가할 상품 이름을 입력하세요.");
+        String name = scanner.nextLine();
+        System.out.println("추가할 상품 가격을 입력하세요.");
+        double price = scanner.nextDouble();
+        scanner.nextLine();
+        System.out.println("추가할 상품 설명을 입력하세요.");
+        String description = scanner.nextLine();
+        KioskManagement Item = new KioskManagement(name,price,description);
+        return Item;
+    }
+
+    void deleteMenu(){
+        System.out.println("삭제할 상품 메뉴를 선택하세요.");
+        List<Menu> mainMenus = menuContext.getMenus("Main");
+        printMenu(mainMenus, 1);
+        handleDeleteMenu();
+    }
+    void handleDeleteMenu(){
+        // 해쉬맵 키값만 받아서,
+        //for if 로 버튼1일때 key[1]받아서
+        //넘겨주면 더 깔꼼해질듯
+        Scanner scanner = new Scanner(System.in);
+        int input = scanner.nextInt();
+        switch (input){
+            case 1:
+                handleDeleteItem("Burgers");
+                break;
+            case 2:
+                handleDeleteItem("Frozen Custard");
+                break;
+            case 3:
+                handleDeleteItem("Drinks");
+                break;
+            case 4:
+                handleDeleteItem("Beer");
+                break;
+        }
+    }
+
+    void handleDeleteItem(String key){
+        System.out.println("삭제할 메뉴를 선택하십시요.");
+        List<Item> burgerItems = menuContext.getMenuItems(key);
+        printMenuItems(burgerItems);
+        deleteItem(burgerItems);
+    }
+    void deleteItem(List<Item> items){
+        Scanner scanner = new Scanner(System.in);
+        int input = scanner.nextInt();
+        int idx = input-1;
+        Item deleteItem = items.get(idx);
+        checkDeleteItem(deleteItem,items,idx);
+    }
+    void checkDeleteItem(Item deleteItem, List<Item> items,int idx){
+        System.out.println(deleteItem.name+ "   | " + deleteItem.price + " | " + deleteItem.description);
+        System.out.println("위 상품을 삭제하시겠습니까?");
+        System.out.println("1. 확인        2. 취소");
+        Scanner scanner = new Scanner(System.in);
+        int button = scanner.nextInt();
+        if (button == 1) {
+            items.remove(idx);
+            System.out.println("삭제 되었습니다.");
+            displayMainMenu();
+        } else {
+            System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+            displayMainMenu();
+        }
+    }
+
 }
+
+
