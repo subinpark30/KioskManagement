@@ -43,8 +43,10 @@ public class KioskManagement extends ShakeShackBurgerApplication {
         switch (num){
             case 1:
                 getWaitOrderList();
+                break;
             case 2:
                 HandleWaitOrder();
+                break;
             default:
                 System.out.println("잘못된 입력입니다.");
                 displayWaitOrder();

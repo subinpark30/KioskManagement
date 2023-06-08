@@ -54,6 +54,11 @@ public class ShakeShackBurgerApplication {
             case 6:
                 handleCancelMenuInput();
                 break;
+            case 7:
+                menuContext.printCompleteOrders();
+                //3개만
+                menuContext.printWaitOrders();
+                break;
             case 0:
                 kioskManagement.displayMainMenu();
                 displayMainMenu();
