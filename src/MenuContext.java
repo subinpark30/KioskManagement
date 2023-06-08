@@ -1,5 +1,6 @@
-
 import java.util.*;
+
+import static java.util.Collection.*;
 
 class MenuContext {
     private Map<String, List<Menu>> menus;
@@ -144,7 +145,7 @@ class MenuContext {
 
     //완료된 주문 입력 받음
     public void getCompleteOrder(){
-        System.out.println("완료된 주문 입력: ");
+        System.out.println("주문번호를 입력하세요. ");
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
 
@@ -175,4 +176,42 @@ class MenuContext {
             System.out.println();
         }
     }
+    public void printRecentOrders(){
+//        if ( waitOrders == null){
+//            System.out.println("주문 후 이용하세요.");
+//        }
+        System.out.println("[ 최근 주문 완료 현황 ]");
+        // printCompleteOrders 역순 출력!!
+//        Collections.sort(completeOrders);
+        Collections.reverse(completeOrders);
+        int count = 1;
+        for(int i = 0; i < completeOrders.size(); i++){
+
+                System.out.println("대기번호: " + completeOrders.get(i).waitOrder.waitingNumber);
+                System.out.println("주문 목록: ");
+
+                for (int j = 0; j < completeOrders.get(i).waitOrder.orderItemList.size(); j++) {
+                    System.out.println((j + 1) + ". 상품명: " + completeOrders.get(i).waitOrder.orderItemList.get(j).name);
+                    System.out.println("상품 설명: " + completeOrders.get(i).waitOrder.orderItemList.get(j).description);
+                    System.out.println("상품 가격: " + completeOrders.get(i).waitOrder.orderItemList.get(j).price);
+                }
+                System.out.println();
+                System.out.println("주문 총 가격: " + completeOrders.get(i).waitOrder.totalPrice);
+                System.out.println("주문 일시: " + completeOrders.get(i).waitOrder.orderTime);
+                System.out.println("요청 사항: " + completeOrders.get(i).waitOrder.request);
+                System.out.println("완료 주문 일시: " + completeOrders.get(i).orderCompleteTime);
+                System.out.println();
+            count++;
+            if(count > 3) {
+                break;
+            }
+        }
+        Collections.reverse(completeOrders);
+        System.out.println("");
+        System.out.println(" [ 주문 대기 현황 ] ");
+        printWaitOrders();
+        System.out.println("");
+    }
+
+
 }
