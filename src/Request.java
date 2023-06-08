@@ -1,4 +1,4 @@
-package KioskManagement.src;
+
 public class Request {
 
     String request;
