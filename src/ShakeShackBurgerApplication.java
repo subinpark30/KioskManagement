@@ -133,7 +133,6 @@ public class ShakeShackBurgerApplication {
         System.out.println("요청사항을 입력하세요");
         String input = scanner.nextLine();
         menuContext.addRequest(input);
-        System.out.println(input);
         System.out.println("1. 주문      2. 메뉴판");
 
         handleOrderMenuInput();
@@ -190,6 +189,10 @@ public class ShakeShackBurgerApplication {
     }
 
     private static void displayRecentOrders() {
+        if(menuContext.getWaitOrders().isEmpty() && menuContext.getCompleteOrders().isEmpty()){
+            System.out.println("주문이 없습니다.");
+            displayMainMenu();
+        }
         menuContext.printRecentOrders();
         handleRecentOrderInput();
     }

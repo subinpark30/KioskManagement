@@ -178,10 +178,10 @@ class MenuContext {
         }
     }
     public void printRecentOrders(){
-//        if ( waitOrders == null){
-//            System.out.println("주문 후 이용하세요.");
-//        }
         System.out.println("[ 최근 주문 완료 현황 ]");
+        if ( completeOrders.isEmpty()){
+            System.out.println("완료된 주문이 없습니다.");
+        }
         // printCompleteOrders 역순 출력!!
 //        Collections.sort(completeOrders);
         Collections.reverse(completeOrders);
@@ -210,6 +210,9 @@ class MenuContext {
         Collections.reverse(completeOrders);
         System.out.println("");
         System.out.println(" [ 주문 대기 현황 ] ");
+        if ( waitOrders.isEmpty()){
+            System.out.println("진행중인 주문이 없습니다.");
+        }
         printWaitOrders();
         System.out.println("");
     }

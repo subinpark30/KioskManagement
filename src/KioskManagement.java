@@ -81,11 +81,14 @@ public class KioskManagement extends ShakeShackBurgerApplication {
             case 1:
                 menuContext.getCompleteOrder();
                 displayMainMenu();
+                break;
             case 2:
                 displayMainMenu();
+                break;
             default:
                 System.out.println("잘못된 입력입니다.");
                 selectWaitOrder();
+                break;
         }
     }
 
