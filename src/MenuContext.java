@@ -126,7 +126,6 @@ class MenuContext {
                 System.out.println("상품 설명: " + waitOrders.get(i).orderItemList.get(j).description);
                 System.out.println("상품 가격: " + waitOrders.get(i).orderItemList.get(j).price);
             }
-            System.out.println();
             System.out.println("주문 총 가격: " + waitOrders.get(i).totalPrice);
             System.out.println("요청 사항: " + waitOrders.get(i).request.getRequest());
             System.out.println("주문 일시: " + waitOrders.get(i).orderTime);

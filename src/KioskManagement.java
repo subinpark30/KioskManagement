@@ -30,6 +30,10 @@ public class KioskManagement extends ShakeShackBurgerApplication {
                 break;
             case 5:
                 break;
+            default:
+                System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+                handleMainMenuInput();
+                break;
         }
     }
 
@@ -79,10 +83,8 @@ public class KioskManagement extends ShakeShackBurgerApplication {
         printMenu(mainMenus, 1);
         handleAddMenu();
     }
+
     void handleAddMenu(){
-        // 해쉬맵 키값만 받아서,
-        //for if 로 버튼1일때 key[1]받아서
-        //넘겨주면 더 깔꼼해질듯
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();
         switch (input){
@@ -98,8 +100,13 @@ public class KioskManagement extends ShakeShackBurgerApplication {
             case 4:
                 addItem("Beer");
                 break;
+            default:
+                System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+                handleAddMenu();
+                break;
         }
     }
+
     void addItem(String key){
         Item item = insertItem();
         menuContext.addMenus(item.name,item.price,item.description,key);
@@ -126,10 +133,8 @@ public class KioskManagement extends ShakeShackBurgerApplication {
         printMenu(mainMenus, 1);
         handleDeleteMenu();
     }
+
     void handleDeleteMenu(){
-        // 해쉬맵 키값만 받아서,
-        //for if 로 버튼1일때 key[1]받아서
-        //넘겨주면 더 깔꼼해질듯
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();
         switch (input){
@@ -145,6 +150,10 @@ public class KioskManagement extends ShakeShackBurgerApplication {
             case 4:
                 handleDeleteItem("Beer");
                 break;
+            default:
+                System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
+                handleDeleteMenu();
+                break;
         }
     }
 
@@ -154,13 +163,20 @@ public class KioskManagement extends ShakeShackBurgerApplication {
         printMenuItems(burgerItems);
         deleteItem(burgerItems);
     }
+
     void deleteItem(List<Item> items){
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();
-        int idx = input-1;
-        Item deleteItem = items.get(idx);
-        checkDeleteItem(deleteItem,items,idx);
+        if(1<=input && input <= items.size()){
+            int idx = input-1;
+            Item deleteItem = items.get(idx);
+            checkDeleteItem(deleteItem,items,idx);
+        }else{
+            System.out.println("잘못된 입력입니다.");
+            deleteItem(items);
+        }
     }
+
     void checkDeleteItem(Item deleteItem, List<Item> items,int idx){
         System.out.println(deleteItem.name+ "   | " + deleteItem.price + " | " + deleteItem.description);
         System.out.println("위 상품을 삭제하시겠습니까?");
@@ -170,6 +186,9 @@ public class KioskManagement extends ShakeShackBurgerApplication {
         if (button == 1) {
             items.remove(idx);
             System.out.println("삭제 되었습니다.");
+            displayMainMenu();
+        } else if (button == 2) {
+            System.out.println("취소 되었습니다. 메뉴로 돌아갑니다.");
             displayMainMenu();
         } else {
             System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
