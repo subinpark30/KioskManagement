@@ -1,4 +1,4 @@
-
+package KioskManagement.src;
 import java.util.List;
 import java.util.Scanner;
 
@@ -56,8 +56,32 @@ public class KioskManagement extends ShakeShackBurgerApplication {
 
     //0-1-1대기 주문 목록 조회
     void getWaitOrderList() {
-        menuContext.printWaitOrders();
-        displayMainMenu();
+        //대기목록 없을 때
+        if(menuContext.getWaitOrders() == null){
+            System.out.println("대기목록이 없습니다.");  
+            displayMainMenu();
+        }else{
+            menuContext.printWaitOrders();
+            //완료처리 또는 복귀 선택
+            selectWaitOrder();
+        }
+    }
+
+    //0-1-1-1 완료처리 또는 복귀
+    void selectWaitOrder(){
+        System.out.println("1. 대기 주문 완료 처리하기    2. 관리 목록으로 돌아가기");
+        Scanner sc = new Scanner(System.in);
+        int input = sc.nextInt();
+        
+        switch (input){
+            case 1:
+                menuContext.getCompleteOrder();
+            case 2:
+                displayMainMenu();
+            default:
+                System.out.println("잘못된 입력");
+                selectWaitOrder();
+        }
     }
 
     //0-1-2대기 주문 완료 처리

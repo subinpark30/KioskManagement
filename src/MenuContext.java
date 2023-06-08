@@ -1,3 +1,4 @@
+package KioskManagement.src;
 import java.util.*;
 
 class MenuContext {
@@ -97,7 +98,9 @@ class MenuContext {
             System.out.println(item.name + "   | " + item.price + " | " + item.description);
         }
     }
-
+    public List<WaitOrder> getWaitOrders(){
+        return waitOrders;
+    }
     public double getTotalPrice() {
         return totalPrice;
     }
@@ -118,6 +121,8 @@ class MenuContext {
     //대기 주문 목록 출력
     public void printWaitOrders(){
         for(int i = 0; i < waitOrders.size(); i++){
+            int idx = i +1;
+            System.out.println("주문번호"+ idx);
             System.out.println("대기번호: " + waitOrders.get(i).waitingNumber);
             System.out.println("주문 목록: ");
             //에러난 부분
