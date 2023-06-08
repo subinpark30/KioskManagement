@@ -75,14 +75,6 @@ class MenuContext {
         return menuItems.get(key);
     }
 
-//    public List<Request> getRequests() {
-//        return requests;
-//    }
-//
-//    public void setRequests(List<Request> requests) {
-//        this.requests = requests;
-//    }
-
     public void addRequest(String request){
         this.request = new Request(request);
     }
@@ -121,15 +113,15 @@ class MenuContext {
         for(int i = 0; i < waitOrders.size(); i++){
             System.out.println("대기번호: " + waitOrders.get(i).waitingNumber);
             System.out.println("주문 목록: ");
-            //에러난 부분2 (예상)
-            for(int j = 0; j < waitOrders.get(i).orderItemList.size(); i++){
-                System.out.println((i + 1) + ". 상품명: " + waitOrders.get(i).orderItemList.get(j).name);
+            //에러난 부분
+            for(int j = 0; j < waitOrders.get(i).orderItemList.size(); j++){
+                System.out.println((j + 1) + ". 상품명: " + waitOrders.get(i).orderItemList.get(j).name);
                 System.out.println("상품 설명: " + waitOrders.get(i).orderItemList.get(j).description);
                 System.out.println("상품 가격: " + waitOrders.get(i).orderItemList.get(j).price);
             }
             System.out.println();
             System.out.println("주문 총 가격: " + waitOrders.get(i).totalPrice);
-            System.out.println("요청 사항: " + waitOrders.get(i).request);
+            System.out.println("요청 사항: " + waitOrders.get(i).request.getRequest());
             System.out.println("주문 일시: " + waitOrders.get(i).orderTime);
             System.out.println();
         }
