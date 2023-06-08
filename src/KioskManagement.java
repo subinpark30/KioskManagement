@@ -1,4 +1,3 @@
-package KioskManagement.src;
 import java.util.List;
 import java.util.Scanner;
 
@@ -87,9 +86,15 @@ public class KioskManagement extends ShakeShackBurgerApplication {
 
     //0-1-2대기 주문 완료 처리
     void HandleWaitOrder() {
-        menuContext.printWaitOrders();
-        menuContext.getCompleteOrder();
-        displayMainMenu();
+        if(menuContext.getWaitOrders().isEmpty()){
+            System.out.println("대기목록이 없습니다.");
+            System.out.println();
+            displayMainMenu();
+        }else {
+            menuContext.printWaitOrders();
+            menuContext.getCompleteOrder();
+            displayMainMenu();
+        }
     }
 
     //0-2완료 주문 목록 조회
@@ -97,6 +102,7 @@ public class KioskManagement extends ShakeShackBurgerApplication {
         //완료 주문 목록 비었나 검사
         if(menuContext.getCompleteOrders().isEmpty()){
             System.out.println("완료목록이 없습니다.");
+            System.out.println();
             displayMainMenu();
         }else {
             menuContext.printCompleteOrders();

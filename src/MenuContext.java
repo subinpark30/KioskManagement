@@ -1,4 +1,4 @@
-package KioskManagement.src;
+
 import java.util.*;
 
 class MenuContext {
