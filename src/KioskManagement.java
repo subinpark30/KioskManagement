@@ -1,18 +1,9 @@
+
 import java.util.List;
 import java.util.Scanner;
 
 public class KioskManagement extends ShakeShackBurgerApplication {
-    String name;
-    double price;
-    String description;
 
-    KioskManagement(){}
-
-    KioskManagement(String name, double price, String description){
-        this.name=name;
-        this.price=price;
-        this.description=description;
-    }
     void displayMainMenu(){
         System.out.println("1.대기 주문 목록");
         System.out.println("2.완료 주문 목록");
@@ -108,13 +99,13 @@ public class KioskManagement extends ShakeShackBurgerApplication {
         }
     }
     void addItem(String key){
-        KioskManagement Item = insertItem();
-        menuContext.addMenus(Item.name,Item.price,Item.description,key);
+        Item item = insertItem();
+        menuContext.addMenus(item.name,item.price,item.description,key);
         System.out.println("상품이 추가되었습니다.");
         displayMainMenu();
     }
 
-    KioskManagement insertItem(){
+    Item insertItem(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("추가할 상품 이름을 입력하세요.");
         String name = scanner.nextLine();
@@ -123,8 +114,8 @@ public class KioskManagement extends ShakeShackBurgerApplication {
         scanner.nextLine();
         System.out.println("추가할 상품 설명을 입력하세요.");
         String description = scanner.nextLine();
-        KioskManagement Item = new KioskManagement(name,price,description);
-        return Item;
+        Item item = new Item(name,price,description);
+        return item;
     }
 
     void deleteMenu(){
