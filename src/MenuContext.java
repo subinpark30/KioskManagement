@@ -16,7 +16,7 @@ class MenuContext {
         cart = new ArrayList<>();
         totalPrice = 0.0;
         orderNumber = 0;
-//        requests = new ArrayList<>();
+//        requests. = new ArrayList<>();
 
         initializeMenuItems();
     }
