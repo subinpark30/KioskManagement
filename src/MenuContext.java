@@ -31,6 +31,7 @@ class MenuContext {
         List<Menu> orderMenus = new ArrayList<>();
         orderMenus.add(new Menu("Order", "장바구니를 확인 후 주문합니다."));
         orderMenus.add(new Menu("Cancel", "진행중인 주문을 취소합니다."));
+        orderMenus.add(new Menu("Order List", "진행중인 주문을 확인합니다.."));
 
         menus.put("Main", mainMenus);
         menus.put("Order", orderMenus);
