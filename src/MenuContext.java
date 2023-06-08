@@ -172,7 +172,7 @@ class MenuContext {
             System.out.println();
             System.out.println("주문 총 가격: " + completeOrders.get(i).waitOrder.totalPrice);
             System.out.println("주문 일시: " + completeOrders.get(i).waitOrder.orderTime);
-            System.out.println("요청 사항: " + completeOrders.get(i).waitOrder.request);
+            System.out.println("요청 사항: " + completeOrders.get(i).waitOrder.request.getRequest());
             System.out.println("완료 주문 일시: " + completeOrders.get(i).orderCompleteTime);
             System.out.println();
         }
@@ -199,7 +199,7 @@ class MenuContext {
                 System.out.println();
                 System.out.println("주문 총 가격: " + completeOrders.get(i).waitOrder.totalPrice);
                 System.out.println("주문 일시: " + completeOrders.get(i).waitOrder.orderTime);
-                System.out.println("요청 사항: " + completeOrders.get(i).waitOrder.request);
+                System.out.println("요청 사항: " + completeOrders.get(i).waitOrder.request.getRequest());
                 System.out.println("완료 주문 일시: " + completeOrders.get(i).orderCompleteTime);
                 System.out.println();
             count++;
