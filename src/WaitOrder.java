@@ -1,5 +1,4 @@
-
-
+package KioskManagement.src;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,9 +10,9 @@ public class WaitOrder {
     List<Item> orderItemList = new ArrayList<Item>();
     double totalPrice;
     LocalDateTime orderTime;
-    String request;
+    Request request;
 
-    WaitOrder(int waitingNumber, List<Item> orderItemList, double totalPrice, String request){
+    WaitOrder(int waitingNumber, List<Item> orderItemList, double totalPrice, Request request){
         this.waitingNumber = waitingNumber;
         this.orderItemList.addAll(orderItemList);
         this.totalPrice = totalPrice;

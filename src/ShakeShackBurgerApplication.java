@@ -1,3 +1,4 @@
+package KioskManagement.src;
 import java.util.Scanner;
 import java.util.List;
 

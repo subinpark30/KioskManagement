@@ -1,4 +1,4 @@
-
+package KioskManagement.src;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,10 +27,10 @@ public class KioskManagement extends ShakeShackBurgerApplication {
         int input = scanner.nextInt();
         switch (input){
             case 1:
-                displayOrderCart();
+                displayWaitOrder();
                 break;
             case 2:
-                finishOrderCart();
+                displayCompleteOrder();
                 break;
             case 3:
                 addMenu();
@@ -43,20 +43,42 @@ public class KioskManagement extends ShakeShackBurgerApplication {
         }
     }
 
-    public void displayOrderCart(){
-        //pintOrderCart
-        Scanner scanner = new Scanner(System.in);
-        int input = scanner.nextInt();
-        if(input == 1){
-            //addToFinishOrderCart
-            System.out.println("주문이 완료되었습니다.");
-        } else {
-            System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
-            displayMainMenu();
+    void displayWaitOrder(){
+        System.out.println("1. 대기 주문 목록 조회");
+        System.out.println("2. 대기 주문 완료 처리");
+
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+
+        switch (num){
+            case 1:
+                getWaitOrderList();
+            case 2:
+                HandleWaitOrder();
+            default:
+                System.out.println("잘못된 입력입니다.");
+                displayWaitOrder();
+                break;
         }
     }
-    void finishOrderCart(){
-        //printFinishOrderCart
+
+    //0-1-1대기 주문 목록 조회
+    void getWaitOrderList() {
+        menuContext.printWaitOrders();
+        displayMainMenu();
+    }
+
+    //0-1-2대기 주문 완료 처리
+    void HandleWaitOrder() {
+        menuContext.printWaitOrders();
+        menuContext.getCompleteOrder();
+        displayMainMenu();
+    }
+
+    //0-2완료 주문 목록 조회
+    void displayCompleteOrder(){
+        menuContext.printCompleteOrders();
+        displayMainMenu();
     }
 
     void addMenu(){

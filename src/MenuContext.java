@@ -1,4 +1,4 @@
-
+package KioskManagement.src;
 
 import java.util.*;
 
@@ -6,7 +6,7 @@ class MenuContext {
     private Map<String, List<Menu>> menus;
     private Map<String, List<Item>> menuItems;
     private List<Item> cart;
-    private List<Request> requests;
+    private Request request;
     private double totalPrice;
     private int orderNumber;
     private List<WaitOrder> waitOrders = new ArrayList<WaitOrder>();
@@ -18,7 +18,7 @@ class MenuContext {
         cart = new ArrayList<>();
         totalPrice = 0.0;
         orderNumber = 0;
-        requests = new ArrayList<>();
+//        requests = new ArrayList<>();
 
         initializeMenuItems();
     }
@@ -75,18 +75,16 @@ class MenuContext {
         return menuItems.get(key);
     }
 
-    public List<Request> getRequests() {
-        return requests;
-    }
-
-    public void setRequests(List<Request> requests) {
-        this.requests = requests;
-    }
+//    public List<Request> getRequests() {
+//        return requests;
+//    }
+//
+//    public void setRequests(List<Request> requests) {
+//        this.requests = requests;
+//    }
 
     public void addRequest(String request){
-        Request re = new Request(request);
-        requests.add(re);
-
+        this.request = new Request(request);
     }
 
     public void addToCart(Item menuItem) {
@@ -116,8 +114,7 @@ class MenuContext {
     }
 
     public void addWaitOrder(int waitingNumber) {
-        //에러난 부분1 (예상) & 에러난 부분2
-        //waitOrders.add(new WaitOrder(waitingNumber, cart, totalPrice, requests));
+        waitOrders.add(new WaitOrder(waitingNumber, cart, totalPrice, request));
     }
     //대기 주문 목록 출력
     public void printWaitOrders(){
@@ -127,8 +124,8 @@ class MenuContext {
             //에러난 부분2 (예상)
             for(int j = 0; j < waitOrders.get(i).orderItemList.size(); i++){
                 System.out.println((i + 1) + ". 상품명: " + waitOrders.get(i).orderItemList.get(j).name);
-                System.out.println("상품 설명: " + waitOrders.get(i).orderItemList.get(j).name);
-                System.out.println("상품 가격: " + waitOrders.get(i).orderItemList.get(j).name);
+                System.out.println("상품 설명: " + waitOrders.get(i).orderItemList.get(j).description);
+                System.out.println("상품 가격: " + waitOrders.get(i).orderItemList.get(j).price);
             }
             System.out.println();
             System.out.println("주문 총 가격: " + waitOrders.get(i).totalPrice);
