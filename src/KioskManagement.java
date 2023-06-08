@@ -38,6 +38,7 @@ public class KioskManagement extends ShakeShackBurgerApplication {
 
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
+        //test
 
         switch (num){
             case 1:
