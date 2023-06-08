@@ -65,6 +65,7 @@ public class KioskManagement extends ShakeShackBurgerApplication {
             //완료처리 또는 복귀 선택
             selectWaitOrder();
         }
+        
     }
 
     //0-1-1-1 완료처리 또는 복귀
