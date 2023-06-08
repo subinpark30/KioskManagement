@@ -1,4 +1,3 @@
-
 import java.util.List;
 import java.util.Scanner;
 
@@ -43,6 +42,7 @@ public class KioskManagement extends ShakeShackBurgerApplication {
 
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
+        //test
 
         switch (num){
             case 1:
@@ -60,21 +60,59 @@ public class KioskManagement extends ShakeShackBurgerApplication {
 
     //0-1-1대기 주문 목록 조회
     void getWaitOrderList() {
-        menuContext.printWaitOrders();
-        displayMainMenu();
+        //대기목록 없을 때
+        if(menuContext.getWaitOrders().isEmpty()){
+            System.out.println("대기목록이 없습니다.");  
+            displayMainMenu();
+        }else{
+            menuContext.printWaitOrders();
+            //완료처리 또는 복귀 선택
+            selectWaitOrder();
+        }
+
+    }
+
+    //0-1-1-1 완료처리 또는 복귀
+    void selectWaitOrder(){
+        System.out.println("1. 대기 주문 완료 처리하기    2. 관리 목록으로 돌아가기");
+        Scanner sc = new Scanner(System.in);
+        int input = sc.nextInt();
+        
+        switch (input){
+            case 1:
+                menuContext.getCompleteOrder();
+            case 2:
+                displayMainMenu();
+            default:
+                System.out.println("잘못된 입력");
+                selectWaitOrder();
+        }
     }
 
     //0-1-2대기 주문 완료 처리
     void HandleWaitOrder() {
-        menuContext.printWaitOrders();
-        menuContext.getCompleteOrder();
-        displayMainMenu();
+        if(menuContext.getWaitOrders().isEmpty()){
+            System.out.println("대기목록이 없습니다.");
+            System.out.println();
+            displayMainMenu();
+        }else {
+            menuContext.printWaitOrders();
+            menuContext.getCompleteOrder();
+            displayMainMenu();
+        }
     }
 
     //0-2완료 주문 목록 조회
     void displayCompleteOrder(){
-        menuContext.printCompleteOrders();
-        displayMainMenu();
+        //완료 주문 목록 비었나 검사
+        if(menuContext.getCompleteOrders().isEmpty()){
+            System.out.println("완료목록이 없습니다.");
+            System.out.println();
+            displayMainMenu();
+        }else {
+            menuContext.printCompleteOrders();
+            displayMainMenu();
+        }
     }
 
     void addMenu(){
