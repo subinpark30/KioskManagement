@@ -96,8 +96,14 @@ class MenuContext {
         totalPrice += menuItem.price;
     }
 
-
-    public void displayCart() {
+    public List<Item> getCart(){
+        if (cart.isEmpty()){
+            return null;
+        } else {
+            return cart;
+        }
+    }
+    public void displayCart(List<Item> cart) {
         for (Item item : cart) {
             System.out.println(item.name + "   | " + item.price + " | " + item.description);
         }

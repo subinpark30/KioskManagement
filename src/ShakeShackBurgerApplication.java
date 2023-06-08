@@ -152,10 +152,8 @@ public class ShakeShackBurgerApplication {
 
     private static void displayOrderMenu() {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("아래와 같이 주문 하시겠습니까?\n");
-        menuContext.displayCart();
-
+        checkCartEmpty();
+        System.out.println("위와 같이 주문 하시겠습니까?\n");
         System.out.println("[ Total ]");
         System.out.println("W " + menuContext.getTotalPrice() + "\n");
         System.out.println("요청사항을 입력하세요");
@@ -165,6 +163,16 @@ public class ShakeShackBurgerApplication {
         System.out.println("1. 주문      2. 메뉴판");
 
         handleOrderMenuInput();
+    }
+    private static void checkCartEmpty(){
+        List<Item> cart = menuContext.getCart();
+        if (cart == null){
+            System.out.println("주문목록이 존재하지 않습니다.");
+            System.out.println("메뉴로 돌아갑니다.");
+            System.out.println();
+            displayMainMenu();
+        }
+        menuContext.displayCart(cart);
     }
 
     private static void handleOrderMenuInput() {
@@ -200,6 +208,7 @@ public class ShakeShackBurgerApplication {
     }
 
     private static void handleCancelMenuInput() {
+        checkCartEmpty();
         System.out.println("주문을 취소하시겠습니까?");
         System.out.println("1. 확인        2. 취소");
         handleCancelConfirmationInput();
