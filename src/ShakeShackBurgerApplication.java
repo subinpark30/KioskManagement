@@ -61,7 +61,6 @@ public class ShakeShackBurgerApplication {
             default:
                 System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
                 handleMainMenuInput();
-
                 break;
         }
     }
@@ -81,7 +80,7 @@ public class ShakeShackBurgerApplication {
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();
         if (input >= 1 && input <= items.size()) {
-            Item selectedItem = items.get(input);
+            Item selectedItem = items.get(input-1);
             displayConfirmation(selectedItem);
         } else {
             System.out.println("잘못된 입력입니다. 다시 입력해주세요.");
@@ -186,6 +185,7 @@ public class ShakeShackBurgerApplication {
 
         System.out.println("주문이 완료되었습니다!\n");
         System.out.println("대기번호는 [ " + orderNumber + " ] 번 입니다.");
+        menuContext.addWaitOrder(orderNumber);
         resetCartAndDisplayMainMenu();
     }
 

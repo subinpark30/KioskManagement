@@ -1,8 +1,8 @@
+package KioskManagement.src;
+import teamProject2.ShakeShackBurger.src.main.java.CompleteOrder;
+import teamProject2.ShakeShackBurger.src.main.java.WaitOrder;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 class MenuContext {
     private Map<String, List<Menu>> menus;
@@ -11,6 +11,8 @@ class MenuContext {
     private List<Request> requests;
     private double totalPrice;
     private int orderNumber;
+    private List<WaitOrder> waitOrders = new ArrayList<WaitOrder>();
+    private List<CompleteOrder> completeOrders = new ArrayList<CompleteOrder>();
 
     public MenuContext() {
         menus = new HashMap<>();
@@ -113,5 +115,62 @@ class MenuContext {
     public void resetCart() {
         cart.clear();
         totalPrice = 0.0;
+    }
+
+    public void addWaitOrder(int waitingNumber) {
+        //에러난 부분1 (예상) & 에러난 부분2
+        waitOrders.add(new WaitOrder(waitingNumber, cart, totalPrice, request));
+    }
+    //대기 주문 목록 출력
+    public void printWaitOrders(){
+        for(int i = 0; i < waitOrders.size(); i++){
+            System.out.println("대기번호: " + waitOrders.get(i).waitingNumber);
+            System.out.println("주문 목록: ");
+            //에러난 부분2 (예상)
+            for(int j = 0; j < waitOrders.get(i).orderItemList.size(); i++){
+                System.out.println((i + 1) + ". 상품명: " + waitOrders.get(i).orderItemList.get(j).name);
+                System.out.println("상품 설명: " + waitOrders.get(i).orderItemList.get(j).name);
+                System.out.println("상품 가격: " + waitOrders.get(i).orderItemList.get(j).name);
+            }
+            System.out.println();
+            System.out.println("주문 총 가격: " + waitOrders.get(i).totalPrice);
+            System.out.println("요청 사항: " + waitOrders.get(i).request);
+            System.out.println("주문 일시: " + waitOrders.get(i).orderTime);
+            System.out.println();
+        }
+    }
+
+    //완료된 주문 입력 받음
+    public void getCompleteOrder(){
+        System.out.println("완료된 주문 입력: ");
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+
+        if(1<=num && num <= waitOrders.size()){
+            completeOrders.add(new CompleteOrder(waitOrders.get(num-1)));
+            waitOrders.remove(num -1);
+        }else{
+            System.out.println("잘못된 입력입니다.");
+            getCompleteOrder();
+        }
+    }
+
+    //완료 주문 목록 출력
+    public void printCompleteOrders(){
+        for(int i = 0; i < completeOrders.size(); i++){
+            System.out.println("대기번호: " + completeOrders.get(i).waitOrder.waitingNumber);
+            System.out.println("주문 목록: ");
+            for(int j = 0; j < completeOrders.get(i).waitOrder.orderItemList.size(); j++){
+                System.out.println((j+1) + ". 상품명: " + completeOrders.get(i).waitOrder.orderItemList.get(j).name);
+                System.out.println("상품 설명: " + completeOrders.get(i).waitOrder.orderItemList.get(j).description);
+                System.out.println("상품 가격: " + completeOrders.get(i).waitOrder.orderItemList.get(j).price);
+            }
+            System.out.println();
+            System.out.println("주문 총 가격: " + completeOrders.get(i).waitOrder.totalPrice);
+            System.out.println("주문 일시: " + completeOrders.get(i).waitOrder.orderTime);
+            System.out.println("요청 사항: " + completeOrders.get(i).waitOrder.request);
+            System.out.println("완료 주문 일시: " + completeOrders.get(i).orderCompleteTime);
+            System.out.println();
+        }
     }
 }
