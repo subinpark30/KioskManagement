@@ -13,9 +13,11 @@ public class ShakeShackBurgerApplication {
     private static void displayMainMenu() {
         System.out.println("SHAKESHACK BURGER 에 오신걸 환영합니다.");
         System.out.println("아래 메뉴판을 보시고 메뉴를 골라 입력해주세요.\n");
+
         System.out.println("[ SHAKESHACK MENU ]");
         List<Menu> mainMenus = menuContext.getMenus("Main");
         int nextNum = printMenu(mainMenus, 1);
+
         System.out.println("[ ORDER MENU ]");
         List<Menu> orderMenus = menuContext.getMenus("Order");
         printMenu(orderMenus, nextNum);
@@ -180,7 +182,6 @@ public class ShakeShackBurgerApplication {
 
     private static void displayOrderComplete() {
         int orderNumber = menuContext.generateOrderNumber();
-
         System.out.println("주문이 완료되었습니다!\n");
         System.out.println("대기번호는 [ " + orderNumber + " ] 번 입니다.");
         menuContext.addWaitOrder(orderNumber);
@@ -191,7 +192,7 @@ public class ShakeShackBurgerApplication {
         menuContext.resetCart();
         System.out.println("(3초후 메뉴판으로 돌아갑니다.)");
         try {
-            Thread.sleep(3000); // 3초 대기
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -201,7 +202,6 @@ public class ShakeShackBurgerApplication {
     private static void handleCancelMenuInput() {
         System.out.println("주문을 취소하시겠습니까?");
         System.out.println("1. 확인        2. 취소");
-
         handleCancelConfirmationInput();
     }
 

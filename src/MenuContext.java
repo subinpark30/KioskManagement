@@ -45,18 +45,20 @@ class MenuContext {
         burgersMenus.add(new Item("Hamburger", 5.4, "비프패티를 기반으로 야채가 들어간 기본버거"));
 
         List<Item> frozenCustardMenu = new ArrayList<>();
-        frozenCustardMenu.add(new Item("Frozen Custard MyKiosk.Menu Item 1", 1.4, "Frozen Custard MyKiosk.Menu Item 1 설명"));
-        frozenCustardMenu.add(new Item("Frozen Custard MyKiosk.Menu Item 2", 1.0, "Frozen Custard MyKiosk.Menu Item 2 설명"));
-        frozenCustardMenu.add(new Item("Frozen Custard MyKiosk.Menu Item 3", 1.6, "Frozen Custard MyKiosk.Menu Item 3 설명"));
-        frozenCustardMenu.add(new Item("Frozen Custard MyKiosk.Menu Item 4", 2.1, "Frozen Custard MyKiosk.Menu Item 4 설명"));
+        frozenCustardMenu.add(new Item("Shack Attack", 5.9, "초콜렛 퍼지 소스, 초콜렛 청크와 펄이 들어간 진한 커스터드"));
+        frozenCustardMenu.add(new Item("Blossom", 5.9, "스트로베리 잼, 슈가 콘이 어울러진 바닐라 커스터드"));
+        frozenCustardMenu.add(new Item("Shack in the Garden", 4.9, "라즈베리 잼, 블렌딩 된 바닐라 커스터드"));
+        frozenCustardMenu.add(new Item("Mix-Ins", 0.7, "초콜렛, 스트로베리, 카라멜, 피넛 버터"));
 
         List<Item> drinksMenu = new ArrayList<>();
-        drinksMenu.add(new Item("Drinks MyKiosk.Menu Item 1", 1.0, "Drinks MyKiosk.Menu Item 1 설명"));
-        drinksMenu.add(new Item("Drinks MyKiosk.Menu Item 2", 1.0, "Drinks MyKiosk.Menu Item 2 설명"));
+        drinksMenu.add(new Item("Shack-made Lemonade", 3.9, "매장에서 직접 만드는 레몬에이드"));
+        drinksMenu.add(new Item("Iced Tea", 3.4, "유기농 홍차를 우려낸 아이스 티"));
+        drinksMenu.add(new Item("Fountain Soda", 2.7, "코카콜라"));
+        drinksMenu.add(new Item("Bottled Water", 2.7, "지리산 암반대수층으로 만든 생수"));
 
         List<Item> beerMenu = new ArrayList<>();
-        beerMenu.add(new Item("Beer MyKiosk.Menu Item 1", 3.0, "Beer MyKiosk.Menu Item 1 설명"));
-        beerMenu.add(new Item("Beer MyKiosk.Menu Item 2", 4.0, "Beer MyKiosk.Menu Item 2 설명"));
+        beerMenu.add(new Item("Shack Ale", 6.8, "특별히 양조한 에일 맥주"));
+        beerMenu.add(new Item("Slow IPA", 6.5, "The Hand and Malt"));
 
         menuItems.put("Burgers", burgersMenus);
         menuItems.put("Frozen Custard", frozenCustardMenu);
