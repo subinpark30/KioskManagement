@@ -6,9 +6,7 @@ public class KioskManagement extends ShakeShackBurgerApplication {
     String name;
     double price;
     String description;
-
     KioskManagement(){}
-
     KioskManagement(String name, double price, String description){
         this.name=name;
         this.price=price;
