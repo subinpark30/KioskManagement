@@ -125,7 +125,7 @@ class MenuContext {
     public void printWaitOrders(){
         for(int i = 0; i < waitOrders.size(); i++){
             int idx = i +1;
-            System.out.println("주문번호"+ idx);
+            System.out.println("[ 주문번호 : "+idx+" ]");
             System.out.println("대기번호: " + waitOrders.get(i).waitingNumber);
             System.out.println("주문 목록: ");
             //에러난 부분
@@ -143,13 +143,14 @@ class MenuContext {
 
     //완료된 주문 입력 받음
     public void getCompleteOrder(){
-        System.out.println("완료된 주문 입력: ");
+        System.out.println("주문번호를 입력해주세요.");
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
 
         if(1<=num && num <= waitOrders.size()){
             completeOrders.add(new CompleteOrder(waitOrders.get(num-1)));
             waitOrders.remove(num -1);
+            System.out.println("주문이 완료되었습니다.");
         }else{
             System.out.println("잘못된 입력입니다.");
             getCompleteOrder();

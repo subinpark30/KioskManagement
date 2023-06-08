@@ -42,7 +42,6 @@ public class KioskManagement extends ShakeShackBurgerApplication {
 
         Scanner sc = new Scanner(System.in);
         int num = sc.nextInt();
-        //test
 
         switch (num){
             case 1:
@@ -81,10 +80,11 @@ public class KioskManagement extends ShakeShackBurgerApplication {
         switch (input){
             case 1:
                 menuContext.getCompleteOrder();
+                displayMainMenu();
             case 2:
                 displayMainMenu();
             default:
-                System.out.println("잘못된 입력");
+                System.out.println("잘못된 입력입니다.");
                 selectWaitOrder();
         }
     }
