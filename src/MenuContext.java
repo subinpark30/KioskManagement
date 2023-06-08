@@ -136,6 +136,13 @@ class MenuContext {
             System.out.println("주문 일시: " + waitOrders.get(i).orderTime);
             System.out.println();
         }
+        System.out.println("ese를 누르면 메인화면으로 이동합니다.");
+        Scanner scanner = new Scanner(System.in);
+
+        char input = scanner.next().charAt(49);
+        int num = (int)input;
+            ShakeShackBurgerApplication.displayMainMenu();
+
     }
 
     //완료된 주문 입력 받음
@@ -176,7 +183,8 @@ class MenuContext {
         // printCompleteOrders 역순 출력!!
 //        Collections.sort(completeOrders);
         Collections.reverse(completeOrders);
-        for(int i = 0; i < 3; i++){
+        int count = 1;
+        for(int i = 0; i < completeOrders.size(); i++){
             System.out.println("대기번호: " + completeOrders.get(i).waitOrder.waitingNumber);
             System.out.println("주문 목록: ");
             for(int j = 0; j < completeOrders.get(i).waitOrder.orderItemList.size(); j++){
@@ -190,10 +198,14 @@ class MenuContext {
             System.out.println("요청 사항: " + completeOrders.get(i).waitOrder.request);
             System.out.println("완료 주문 일시: " + completeOrders.get(i).orderCompleteTime);
             System.out.println();
+            count++;
+            if(count>3) {
+                break;
+            }
         }
         Collections.reverse(completeOrders);
         System.out.println("");
         System.out.println(" [ 주문 대기 현황 ] ");
         printWaitOrders();
+        }
     }
-}
