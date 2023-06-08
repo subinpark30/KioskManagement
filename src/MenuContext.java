@@ -172,6 +172,9 @@ class MenuContext {
         }
     }
     public void printRecentOrders(){
+//        if ( waitOrders == null){
+//            System.out.println("주문 후 이용하세요.");
+//        }
         System.out.println("[ 최근 주문 완료 현황 ]");
         // printCompleteOrders 역순 출력!!
 //        Collections.sort(completeOrders);
