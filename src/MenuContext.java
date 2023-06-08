@@ -101,6 +101,9 @@ class MenuContext {
     public List<WaitOrder> getWaitOrders(){
         return waitOrders;
     }
+    public List<CompleteOrder> getCompleteOrders(){
+        return completeOrders;
+    }
     public double getTotalPrice() {
         return totalPrice;
     }

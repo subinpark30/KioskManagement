@@ -57,7 +57,7 @@ public class KioskManagement extends ShakeShackBurgerApplication {
     //0-1-1대기 주문 목록 조회
     void getWaitOrderList() {
         //대기목록 없을 때
-        if(menuContext.getWaitOrders() == null){
+        if(menuContext.getWaitOrders().isEmpty()){
             System.out.println("대기목록이 없습니다.");  
             displayMainMenu();
         }else{
@@ -65,7 +65,7 @@ public class KioskManagement extends ShakeShackBurgerApplication {
             //완료처리 또는 복귀 선택
             selectWaitOrder();
         }
-        
+
     }
 
     //0-1-1-1 완료처리 또는 복귀
@@ -94,8 +94,14 @@ public class KioskManagement extends ShakeShackBurgerApplication {
 
     //0-2완료 주문 목록 조회
     void displayCompleteOrder(){
-        menuContext.printCompleteOrders();
-        displayMainMenu();
+        //완료 주문 목록 비었나 검사
+        if(menuContext.getCompleteOrders().isEmpty()){
+            System.out.println("완료목록이 없습니다.");
+            displayMainMenu();
+        }else {
+            menuContext.printCompleteOrders();
+            displayMainMenu();
+        }
     }
 
     void addMenu(){
