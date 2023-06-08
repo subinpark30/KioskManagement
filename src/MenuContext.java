@@ -1,6 +1,4 @@
-package KioskManagement.src;
-import teamProject2.ShakeShackBurger.src.main.java.CompleteOrder;
-import teamProject2.ShakeShackBurger.src.main.java.WaitOrder;
+
 
 import java.util.*;
 
@@ -119,7 +117,7 @@ class MenuContext {
 
     public void addWaitOrder(int waitingNumber) {
         //에러난 부분1 (예상) & 에러난 부분2
-        waitOrders.add(new WaitOrder(waitingNumber, cart, totalPrice, request));
+        //waitOrders.add(new WaitOrder(waitingNumber, cart, totalPrice, requests));
     }
     //대기 주문 목록 출력
     public void printWaitOrders(){

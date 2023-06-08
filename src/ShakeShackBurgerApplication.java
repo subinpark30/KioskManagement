@@ -55,7 +55,7 @@ public class ShakeShackBurgerApplication {
                 handleCancelMenuInput();
                 break;
             case 0:
-                kioskManagement.displayMainMenu();
+                //kioskManagement.displayMainMenu();
                 displayMainMenu();
                 break;
             default:
