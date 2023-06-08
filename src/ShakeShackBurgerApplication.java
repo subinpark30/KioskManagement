@@ -56,9 +56,7 @@ public class ShakeShackBurgerApplication {
                 handleCancelMenuInput();
                 break;
             case 7:
-                menuContext.printCompleteOrders();
-                //3개만
-                menuContext.printWaitOrders();
+                displayRecentOrders();
                 break;
             case 0:
                 kioskManagement.displayMainMenu();
@@ -191,6 +189,20 @@ public class ShakeShackBurgerApplication {
         handleCancelConfirmationInput();
     }
 
+    private static void displayRecentOrders() {
+        menuContext.printRecentOrders();
+        handleRecentOrderInput();
+    }
+
+    private static void handleRecentOrderInput(){
+        System.out.println("1. 메인화면 돌아가기");
+        Scanner scanner = new Scanner(System.in);
+        int input = scanner.nextInt();
+        if (input == 1){
+            displayMainMenu();
+        }
+    }
+
     private static void handleCancelConfirmationInput() {
         Scanner scanner = new Scanner(System.in);
         int input = scanner.nextInt();
@@ -205,5 +217,7 @@ public class ShakeShackBurgerApplication {
             handleCancelConfirmationInput();
         }
     }
+
+
 
 }
