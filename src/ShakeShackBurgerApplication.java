@@ -55,9 +55,7 @@ public class ShakeShackBurgerApplication {
                 handleCancelMenuInput();
                 break;
             case 7:
-                menuContext.printCompleteOrders();
-                //3개만
-                menuContext.printWaitOrders();
+                menuContext.printRecentOrders();
                 break;
             case 0:
                 kioskManagement.displayMainMenu();
@@ -204,5 +202,7 @@ public class ShakeShackBurgerApplication {
             handleCancelConfirmationInput();
         }
     }
+
+
 
 }
