@@ -176,24 +176,34 @@ class MenuContext {
         // printCompleteOrders 역순 출력!!
 //        Collections.sort(completeOrders);
         Collections.reverse(completeOrders);
-        for(int i = 0; i < 3; i++){
-            System.out.println("대기번호: " + completeOrders.get(i).waitOrder.waitingNumber);
-            System.out.println("주문 목록: ");
-            for(int j = 0; j < completeOrders.get(i).waitOrder.orderItemList.size(); j++){
-                System.out.println((j+1) + ". 상품명: " + completeOrders.get(i).waitOrder.orderItemList.get(j).name);
-                System.out.println("상품 설명: " + completeOrders.get(i).waitOrder.orderItemList.get(j).description);
-                System.out.println("상품 가격: " + completeOrders.get(i).waitOrder.orderItemList.get(j).price);
+        int count = 1;
+        for(int i = 0; i < completeOrders.size(); i++){
+
+                System.out.println("대기번호: " + completeOrders.get(i).waitOrder.waitingNumber);
+                System.out.println("주문 목록: ");
+
+                for (int j = 0; j < completeOrders.get(i).waitOrder.orderItemList.size(); j++) {
+                    System.out.println((j + 1) + ". 상품명: " + completeOrders.get(i).waitOrder.orderItemList.get(j).name);
+                    System.out.println("상품 설명: " + completeOrders.get(i).waitOrder.orderItemList.get(j).description);
+                    System.out.println("상품 가격: " + completeOrders.get(i).waitOrder.orderItemList.get(j).price);
+                }
+                System.out.println();
+                System.out.println("주문 총 가격: " + completeOrders.get(i).waitOrder.totalPrice);
+                System.out.println("주문 일시: " + completeOrders.get(i).waitOrder.orderTime);
+                System.out.println("요청 사항: " + completeOrders.get(i).waitOrder.request);
+                System.out.println("완료 주문 일시: " + completeOrders.get(i).orderCompleteTime);
+                System.out.println();
+            count++;
+            if(count > 3) {
+                break;
             }
-            System.out.println();
-            System.out.println("주문 총 가격: " + completeOrders.get(i).waitOrder.totalPrice);
-            System.out.println("주문 일시: " + completeOrders.get(i).waitOrder.orderTime);
-            System.out.println("요청 사항: " + completeOrders.get(i).waitOrder.request);
-            System.out.println("완료 주문 일시: " + completeOrders.get(i).orderCompleteTime);
-            System.out.println();
         }
         Collections.reverse(completeOrders);
         System.out.println("");
         System.out.println(" [ 주문 대기 현황 ] ");
         printWaitOrders();
+        System.out.println("");
     }
+
+
 }
