@@ -37,16 +37,16 @@ public class ShakeShackBurgerApplication {
         int input = scanner.nextInt();
         switch (input) {
             case 1:
-                displayBurgersMenu();
+                displayItemMenu("Burgers");
                 break;
             case 2:
-                displayFrozenCustardMenu();
+                displayItemMenu("Frozen Custard");
                 break;
             case 3:
-                displayDrinksMenu();
+                displayItemMenu("Drinks");
                 break;
             case 4:
-                displayBeerMenu();
+                displayItemMenu("Beer");
                 break;
             case 5:
                 displayOrderMenu();
@@ -65,15 +65,15 @@ public class ShakeShackBurgerApplication {
         }
     }
 
-    private static void displayBurgersMenu() {
+    private static void displayItemMenu(String key) {
         System.out.println("SHAKESHACK BURGER 에 오신걸 환영합니다.");
         System.out.println("아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.\n");
 
-        System.out.println("[ Burgers MENU ]");
-        List<Item> burgerItems = menuContext.getMenuItems("Burgers");
-        printMenuItems(burgerItems);
+        System.out.println("[ " +key+ " MENU ]");
+        List<Item> Items = menuContext.getMenuItems(key);
+        printMenuItems(Items);
 
-        handleMenuItemInput(burgerItems);
+        handleMenuItemInput(Items);
     }
 
     private static void handleMenuItemInput(List<Item> items) {
@@ -93,38 +93,6 @@ public class ShakeShackBurgerApplication {
             int num = i + 1;
             System.out.println(num + ". " + items.get(i).name + "   | " + items.get(i).price + " | " + items.get(i).description);
         }
-    }
-    private static void displayFrozenCustardMenu() {
-        System.out.println("SHAKESHACK BURGER 에 오신걸 환영합니다.");
-        System.out.println("아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.\n");
-
-        System.out.println("[ Frozen Custard MENU ]");
-        List<Item> frozenCustardItems = menuContext.getMenuItems("Frozen Custard");
-        printMenuItems(frozenCustardItems);
-
-        handleMenuItemInput(frozenCustardItems);
-    }
-
-    private static void displayDrinksMenu() {
-        System.out.println("SHAKESHACK BURGER 에 오신걸 환영합니다.");
-        System.out.println("아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.\n");
-
-        System.out.println("[ Drinks MENU ]");
-        List<Item> drinkItems = menuContext.getMenuItems("Drinks");
-        printMenuItems(drinkItems);
-
-        handleMenuItemInput(drinkItems);
-    }
-
-    private static void displayBeerMenu() {
-        System.out.println("SHAKESHACK BURGER 에 오신걸 환영합니다.");
-        System.out.println("아래 상품메뉴판을 보시고 상품을 골라 입력해주세요.\n");
-
-        System.out.println("[ Beer MENU ]");
-        List<Item> beerItems = menuContext.getMenuItems("Beer");
-        printMenuItems(beerItems);
-
-        handleMenuItemInput(beerItems);
     }
 
     private static void displayConfirmation(Item menuItem) {
@@ -152,12 +120,12 @@ public class ShakeShackBurgerApplication {
 
     private static void displayOrderMenu() {
         Scanner scanner = new Scanner(System.in);
+        checkCartEmpty();
 
-        System.out.println("아래와 같이 주문 하시겠습니까?\n");
-        menuContext.displayCart();
-
+        System.out.println("위와 같이 주문 하시겠습니까?\n");
         System.out.println("[ Total ]");
         System.out.println("W " + menuContext.getTotalPrice() + "\n");
+
         System.out.println("요청사항을 입력하세요");
         String input = scanner.nextLine();
         menuContext.addRequest(input);
@@ -165,6 +133,17 @@ public class ShakeShackBurgerApplication {
         System.out.println("1. 주문      2. 메뉴판");
 
         handleOrderMenuInput();
+    }
+
+    private static void checkCartEmpty(){
+        List<Item> cart = menuContext.getCart();
+        if (cart == null){
+            System.out.println("주문목록이 존재하지 않습니다.");
+            System.out.println("메뉴로 돌아갑니다.");
+            System.out.println();
+            displayMainMenu();
+        }
+        menuContext.displayCart(cart);
     }
 
     private static void handleOrderMenuInput() {
@@ -200,6 +179,7 @@ public class ShakeShackBurgerApplication {
     }
 
     private static void handleCancelMenuInput() {
+        checkCartEmpty();
         System.out.println("주문을 취소하시겠습니까?");
         System.out.println("1. 확인        2. 취소");
         handleCancelConfirmationInput();
